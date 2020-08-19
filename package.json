@@ -1,0 +1,35 @@
+{
+  "name": "whalebit",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "build": {
+    "appId": "de.yichuanshen.whalebit",
+    "compression": "maximum",
+    "nsis": {
+      "oneClick": false,
+      "perMachine": true,
+      "allowToChangeInstallationDirectory": true,
+      "artifactName": "whalebit-v${version}-win-setup.${ext}"
+    },
+    "linux": {
+      "category": "Utility"
+    }
+  },
+  "scripts": {
+    "start": "electron .",
+    "build": "electron-builder --dir",
+    "dist:win": "electron-builder -w --ia32 ",
+    "dist:macos": "",
+    "dist:linux": "electron-builder -l --ia32 --x64"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "^7.1.1",
+    "electron-builder": "^22.1.0"
+  },
+  "dependencies": {
+    "electron-dockable": "^0.9.5"
+  }
+}
