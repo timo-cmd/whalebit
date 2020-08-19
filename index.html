@@ -1,610 +1,373 @@
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat&amp;display=swap">
-<style>
-    @import url('https://fonts.googleapis.com/css2?family=Inconsolata:wght@500&display=swap');
+<html>
+    <head>
+        <meta charset="UTF-8"/>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,700">
+        <link rel="stylesheet" hrfe="https://fonts.googleapis.com/css?family=Playfair+Display:400italic,700italic">
+        <style>
+            html {
+            font-size: 62.5%;
+            }
 
-    * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+            body {
+            font-size: 1.4rem;
+            }
 
+            /* =14px */
+            h1 {
+            font-size: 2.4rem;
+            }
 
+            /* =24px */
+            .container__item {
+            margin: 0 auto 40px;
+            }
 
-button {
-  border: 0;
-  outline: 0;
-}
+            .landing-page-container {
+            width: 100%;
+            min-height: 100%;
+            height: 90rem;
+            background-image: url("https://s29.postimg.org/vho8xb2pj/landing_bg.jpg");
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: bottom;
+            overflow: hidden;
+            font-family: 'Montserrat', sans-serif;
+            color: #09383E;
+            }
 
-.container {
-  width: 100%;
-  height: 100%;
-  padding: 10px 25px;
-  background: #282C34;
-  font-family: 'Inconsolata', monospace;
-}
-.container h2.title {
-  font-size: 1.75rem;
-  margin: 10px -5px;
-  margin-bottom: 30px;
-  color: #fff;
-}
+            .content__wrapper {
+            max-width: 1200px;
+            width: 90%;
+            height: 100%;
+            margin: 0 auto;
+            position: relative;
+            }
 
-.result {
-  position: relative;
-  width: 100%;
-  height: 65px;
-  overflow: hidden;
-}
-.result__info {
-  position: absolute;
-  bottom: 4px;
-  color: #fff;
-  font-size: 0.8rem;
-  transition: all 150ms ease-in-out;
-  transform: translateY(200%);
-  opacity: 0;
-}
-.result__info.right {
-  right: 8px;
-}
-.result__info.left {
-  left: 8px;
-}
-.result__viewbox {
-  width: 100%;
-  height: 100%;
-  background: rgba(255, 255, 255, 0.08);
-  border-radius: 8px;
-  color: #fff;
-  text-align: center;
-  line-height: 65px;
-}
-.result #copy-btn {
-  position: absolute;
-  top: var(--y);
-  left: var(--x);
-  width: 38px;
-  height: 38px;
-  background: #fff;
-  border-radius: 50%;
-  opacity: 0;
-  transform: translate(-50%, -50%) scale(0);
-  transition: all 350ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  cursor: pointer;
-  z-index: 2;
-}
-.result #copy-btn:active {
-  box-shadow: 0 0 0 200px rgba(255, 255, 255, 0.08);
-}
-.result:hover #copy-btn {
-  opacity: 1;
-  transform: translate(-50%, -50%) scale(1.35);
-}
+            .header {
+            width: 100%;
+            height: 2rem;
+            padding: 4.5rem 0;
+            display: block;
+            }
 
-.field-title {
-  position: absolute;
-  top: -10px;
-  left: 8px;
-  transform: translateY(-50%);
-  font-weight: 800;
-  color: rgba(255, 255, 255, 0.5);
-  text-transform: uppercase;
-  font-size: 0.65rem;
-  pointer-events: none;
-  user-select: none;
-}
+            .menu-icon {
+            width: 2.5rem;
+            height: 1.5rem;
+            display: inline-block;
+            cursor: pointer;
+            }
 
-.options {
-  width: 100%;
-  height: auto;
-  margin: 50px 0;
-}
+            .header__item {
+            display: inline-block;
+            float: left;
+            }
 
-.range__slider {
-  position: relative;
-  width: 100%;
-  height: calc(65px - 10px);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: rgba(255, 255, 255, 0.08);
-  border-radius: 8px;
-  margin: 30px 0;
-}
-.range__slider::before, .range__slider::after {
-  position: absolute;
-  color: #fff;
-  font-size: 0.9rem;
-  font-weight: bold;
-}
-.range__slider::before {
-  content: attr(data-min);
-  left: 10px;
-}
-.range__slider::after {
-  content: attr(data-max);
-  right: 10px;
-}
-.range__slider .length__title::after {
-  content: attr(data-length);
-  position: absolute;
-  right: -16px;
-  font-variant-numeric: tabular-nums;
-  color: #fff;
-}
+            .menu-icon__line {
+            width: 1.5rem;
+            height: 0.2rem;
+            background-color: #0C383E;
+            display: block;
+            }
+            .menu-icon__line:before, .menu-icon__line:after {
+            content: '';
+            width: 1.5rem;
+            height: 0.2rem;
+            background-color: #0C383E;
+            display: inline-block;
+            position: relative;
+            }
+            .menu-icon__line:before {
+            left: 0.5rem;
+            top: -0.6rem;
+            }
+            .menu-icon__line:after {
+            top: -1.8rem;
+            }
 
-#slider {
-  -webkit-appearance: none;
-  width: calc(100% - (70px));
-  height: 2px;
-  border-radius: 5px;
-  background: rgba(255, 255, 255, 0.314);
-  outline: none;
-  padding: 0;
-  margin: 0;
-  cursor: pointer;
-}
-#slider::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  background: white;
-  cursor: pointer;
-  transition: all 0.15s ease-in-out;
-}
-#slider::-webkit-slider-thumb:hover {
-  background: #d4d4d4;
-  transform: scale(1.2);
-}
-#slider::-moz-range-thumb {
-  width: 20px;
-  height: 20px;
-  border: 0;
-  border-radius: 50%;
-  background: white;
-  cursor: pointer;
-  transition: background 0.15s ease-in-out;
-}
-#slider::-moz-range-thumb:hover {
-  background: #d4d4d4;
-}
+            .heading {
+            width: 90%;
+            font-size: 2rem;
+            font-weight: bold;
+            margin: 0;
+            line-height: 1.7rem;
+            margin: 0 auto;
+            text-align: center;
+            }
 
-.settings {
-  position: relative;
-  height: auto;
-  widows: 100%;
-  display: flex;
-  flex-direction: column;
-}
-.settings .setting {
-  position: relative;
-  width: 100%;
-  height: calc(65px - 10px);
-  background: rgba(255, 255, 255, 0.08);
-  border-radius: 8px;
-  display: flex;
-  align-items: center;
-  padding: 10px 25px;
-  color: #fff;
-  margin-bottom: 8px;
-}
-.settings .setting input {
-  opacity: 0;
-  position: absolute;
-}
-.settings .setting input + label {
-  user-select: none;
-}
-.settings .setting input + label::before, .settings .setting input + label::after {
-  content: "";
-  position: absolute;
-  transition: 150ms cubic-bezier(0.24, 0, 0.5, 1);
-  transform: translateY(-50%);
-  top: 50%;
-  right: 10px;
-  cursor: pointer;
-}
-.settings .setting input + label::before {
-  height: 30px;
-  width: 50px;
-  border-radius: 30px;
-  background: rgba(214, 214, 214, 0.434);
-}
-.settings .setting input + label::after {
-  height: 24px;
-  width: 24px;
-  border-radius: 60px;
-  right: 32px;
-  background: #fff;
-}
-.settings .setting input:checked + label:before {
-  background: dodgerblue;
-  transition: all 150ms cubic-bezier(0, 0, 0, 0.1);
-}
-.settings .setting input:checked + label:after {
-  right: 14px;
-}
+            .social-container {
+            width: 7.25rem;
+            list-style: none;
+            overflow: hidden;
+            padding: 0;
+            margin: 0;
+            float: right;
+            }
+            .social-container .social__icon {
+            float: left;
+            cursor: pointer;
+            }
+            .social-container .social__icon.social__icon--dr {
+            margin-left: 0.5rem;
+            }
+            .social-container .social__icon.social__icon--dr img {
+            height: 2rem;
+            }
+            .social-container .social__icon.social__icon--in {
+            margin-left: 0.75rem;
+            }
+            .social-container .social__icon.social__icon--in img {
+            height: 2rem;
+            }
+            .social-container .social__icon.social__icon--fb img {
+            height: 2rem;
+            margin: 0rem;
+            }
 
-.settings .setting input:disabled + label:before, .settings .setting input:disabled + label:after {
-  cursor: not-allowed;
-}
-.settings .setting input:disabled + label:before {
-  background: #4f4f6a;
-}
-.settings .setting input:disabled + label:after {
-  background: #909090;
-}
+            .coords {
+            font-size: 1rem;
+            display: inline-block;
+            -webkit-transform: rotate(-90deg) translateY(50%);
+                    transform: rotate(-90deg) translateY(50%);
+            float: left;
+            position: relative;
+            top: 40%;
+            letter-spacing: 0.2rem;
+            left: -11.5rem;
+            margin: 0;
+            }
 
-.btn.generate {
-  user-select: none;
-  position: relative;
-  width: 100%;
-  height: 50px;
-  margin: 10px 0;
-  border-radius: 8px;
-  color: #fff;
-  border: none;
-  background-color: dodgerblue;
-  letter-spacing: 1px;
-  font-weight: bold;
-  text-transform: uppercase;
-  cursor: pointer;
-  transition: all 150ms ease;
-}
-.btn.generate:active {
-  transform: translateY(-3%);
-  box-shadow: 0 4px 8px rgba(255, 255, 255, 0.08);
-}
+            .ellipses-container {
+            width: 50rem;
+            height: 50rem;
+            border-radius: 50%;
+            margin: 0 auto;
+            position: relative;
+            top: 10.5rem;
+            }
+            .ellipses-container .greeting {
+            position: absolute;
+            top: 11.6rem;
+            left: 13rem;
+            right: 0;
+            margin: 0 auto;
+            text-transform: uppercase;
+            letter-spacing: 4rem;
+            font-size: 2.2rem;
+            font-weight: 400;
+            opacity: 0.5;
+            }
+            .ellipses-container .greeting:after {
+            content: '';
+            width: 0.3rem;
+            height: 0.3rem;
+            border-radius: 50%;
+            display: inline-block;
+            background-color: #0C383E;
+            position: relative;
+            top: -0.65rem;
+            left: -5.05rem;
+            }
 
-.support {
-  position: fixed;
-  right: 10px;
-  bottom: 10px;
-  padding: 10px;
-  display: flex;
-}
+            .ellipses {
+            border-radius: 50%;
+            position: absolute;
+            top: 0;
+            border-style: solid;
+            }
 
-a {
-  margin: 0 20px;
-  color: #fff;
-  font-size: 2rem;
-  transition: all 400ms ease;
-}
+            .ellipses__outer--thin {
+            width: 100%;
+            height: 100%;
+            border-width: 1px;
+            border-color: rgba(9, 56, 62, 0.1);
+            -webkit-animation: ellipsesOrbit 15s ease-in-out infinite;
+                    animation: ellipsesOrbit 15s ease-in-out infinite;
+            }
+            .ellipses__outer--thin:after {
+            content: "";
+            background-image: url("https://s29.postimg.org/5h0r4ftkn/ellipses_dial.png");
+            background-repeat: no-repeat;
+            background-position: center;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            position: absolute;
+            opacity: 0.15;
+            }
 
-a:hover {
-  color: #222;
-}
+            .ellipses__outer--thick {
+            width: 99.5%;
+            height: 99.5%;
+            border-color: #09383E transparent;
+            border-width: 2px;
+            -webkit-transform: rotate(-45deg);
+                    transform: rotate(-45deg);
+            -webkit-animation: ellipsesRotate 15s ease-in-out infinite;
+                    animation: ellipsesRotate 15s ease-in-out infinite;
+            }
 
+            .ellipses__orbit {
+            width: 2.5rem;
+            height: 2.5rem;
+            border-width: 2px;
+            border-color: #09383E;
+            top: 5rem;
+            right: 6.75rem;
+            }
+            .ellipses__orbit:before {
+            content: '';
+            width: 0.7rem;
+            height: 0.7rem;
+            border-radius: 50%;
+            display: inline-block;
+            background-color: #09383E;
+            margin: 0 auto;
+            left: 0;
+            right: 0;
+            position: absolute;
+            top: 50%;
+            -webkit-transform: translateY(-50%);
+                    transform: translateY(-50%);
+            }
 
-#titlebar {
-    display: block;
-    padding: 4px;
-    position: fixed;
-    height: 32px;
-    width: calc(100% - 2px); /*Compensate for body 1px border*/
-    background-color: #282C34;
-    }
- 
-    #titlebar #drag-region {
-    width: 100%;
-    height: 100%;
-    -webkit-app-region: drag;
-    }
+            .scroller {
+            width: 7.5rem;
+            display: inline-block;
+            float: right;
+            position: relative;
+            top: -15%;
+            -webkit-transform: translateY(50%);
+                    transform: translateY(50%);
+            overflow: hidden;
+            }
+            .scroller .page-title {
+            font-family: 'Playfair Display', serif;
+            letter-spacing: 0.5rem;
+            display: inline-block;
+            float: left;
+            margin-top: 1rem;
+            }
+            .scroller .timeline {
+            width: 1.5rem;
+            height: 9rem;
+            display: inline-block;
+            float: right;
+            }
+            .scroller .timeline .timeline__unit {
+            width: 100%;
+            height: 0.1rem;
+            display: block;
+            background-color: #0C383E;
+            margin: 0 0 2rem;
+            opacity: 0.2;
+            }
+            .scroller .timeline .timeline__unit.timeline__unit--active {
+            opacity: 1;
+            }
+            .scroller .timeline .timeline__unit.timeline__unit--active:after {
+            opacity: 0.2;
+            }
+            .scroller .timeline .timeline__unit:after {
+            content: '';
+            width: 70%;
+            height: 0.1rem;
+            display: block;
+            position: relative;
+            float: right;
+            background-color: #0C383E;
+            top: 1rem;
+            }
 
-    #window-controls {
-      display: grid;
-      grid-template-columns: repeat(3, 46px);
-      position: absolute;
-      top: 0;
-      right: 0;
-      height: 100%;
-    }
+            @-webkit-keyframes ellipsesRotate {
+            0% {
+                -webkit-transform: rotate(-45deg);
+                        transform: rotate(-45deg);
+            }
+            100% {
+                -webkit-transform: rotate(-405deg);
+                        transform: rotate(-405deg);
+            }
+            }
 
-    #window-controls .button {
-      grid-row: 1 / span 1;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      width: 100%;
-      height: 100%;
-    }
+            @keyframes ellipsesRotate {
+            0% {
+                -webkit-transform: rotate(-45deg);
+                        transform: rotate(-45deg);
+            }
+            100% {
+                -webkit-transform: rotate(-405deg);
+                        transform: rotate(-405deg);
+            }
+            }
+            @-webkit-keyframes ellipsesOrbit {
+            0% {
+                -webkit-transform: rotate(0);
+                        transform: rotate(0);
+            }
+            100% {
+                -webkit-transform: rotate(360deg);
+                        transform: rotate(360deg);
+            }
+            }
+            @keyframes ellipsesOrbit {
+            0% {
+                -webkit-transform: rotate(0);
+                        transform: rotate(0);
+            }
+            100% {
+                -webkit-transform: rotate(360deg);
+                        transform: rotate(360deg);
+            }
+            }
 
-    #close-button {
-      grid-column: 3;
-    }
+        </style>
+    </head>
 
-    @media (-webkit-device-pixel-ratio: 1.5), (device-pixel-ratio: 1.5),
-    (-webkit-device-pixel-ratio: 2), (device-pixel-ratio: 2),
-    (-webkit-device-pixel-ratio: 3), (device-pixel-ratio: 3) {
-    #window-controls .icon {
-      width: 10px;
-      height: 10px;
-    }
-}
+    <body>
+        <div class="container">
+            <div class="container__item landing-page-container">
+                <div class="content__wrapper">
 
-    #window-controls {
-      -webkit-app-region: no-drag;
-    }
+                    <header class="header">
+                        <div class="menu-icon header__item">
+                            <span class="menu-icon__line"></span>
+                        </div>
 
-    #window-controls .button {
-      user-select: none;
-      color: gray;
-    }
-    #window-controls .button:hover {
-      background: rgba(255,255,255,0.2);
-    }
-    #window-controls .button:active {
-      background: rgba(255,255,255,0.2);
-    }
+                        <h1 class="heading header__item">WhaleBit </h1>
 
-    #close-button:hover {
-      background: #E81123 !important;
-    }
-    #close-button:active {
-      background: #F1707A !important;
-    }
-    #close-button:active .icon {
-      filter: invert(1);
-    }
+                        <ul class="social-container header__item">
+                            <li class="social__icon social__icon--fb">
+                           <p>0.1.1 🐳</p>
+                            </li>
+                        </ul>
+                    </header>
 
-    #restore-button {
-      display: none !important;
-    }
+                    <p class="coords">version 0.1.1  /  pre-alpha.August</p>
 
-    
-    #window-title {
-      grid-column: 1;
-      display: flex;
-      align-items: center;
-      margin-left: 8px;
-      overflow: hidden;
-      font-family: "Segoe UI", sans-serif;
-      font-size: 12px;
-    }
+                    <div class="ellipses-container" align="center">
 
-    #window-title span {
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-      line-height: 1.5;
-    }
+                        <img align="center" src="screen.png" height="600"></img>
 
-</style>
-<header id="titlebar">
-    <div id="drag-region">
-      <div id="window-title">
-      </div>
-      <div id="window-controls">
-        <div class="button" id="close-button">
-            <p style="font-family: consolas; color: white;">X</p>
+                        <br></br>
+                        <p>An intuitive and reliable password-generator with a cute UI. <BR><a href="https://github.com/timo-cmd/whalebit/releases/tag/v1.0.0"  style="color: dodgerblue;">Install latest version</a></p>
+                        <p></p>
+                    </div>
+
+                    <div class="scroller">
+                        <p class="page-title">home</p>
+
+                        <div class="timeline">
+                            <span class="timeline__unit"></span>
+                            <span class="timeline__unit timeline__unit--active"></span>
+                            <span class="timeline__unit"></span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
         </div>
-  
-      </div>
-    </div>
-  </header>
-<div class="container">
-    <br>
-    <h2 class="title">WhaleBit v0.1.1🐳</h2>
-    <p style="color: white;">A secure and reliable password generator</p>
-    <br>
-	<div class="result">
-		<div class="result__title field-title">Generated Password</div>
-		<div class="result__info right">click to copy</div>
-		<div class="result__info left">copied</div>
-		<div class="result__viewbox" id="result">generate a passoword</div>
-		<button id="copy-btn" style="--x: 0; --y: 0"><i class="far fa-copy"></i></button>
-	</div>
-	<div class="length range__slider" data-min="4" data-max="32">
-		<div class="length__title field-title" data-length='0'>length:</div>
-		<input id="slider" type="range" min="4" max="32" value="16" />
-	</div>
 
-	<div class="settings">
-		<span class="settings__title field-title">settings</span>
-		<div class="setting">
-			<input type="checkbox" id="uppercase" checked />
-			<label for="uppercase">Include Uppercase</label>
-		</div>
-		<div class="setting">
-			<input type="checkbox" id="lowercase" checked />
-			<label for="lowercase">Include Lowercase</label>
-		</div>
-		<div class="setting">
-			<input type="checkbox" id="number" checked />
-			<label for="number">Include Numbers</label>
-		</div>
-		<div class="setting">
-			<input type="checkbox" id="symbol" />
-			<label for="symbol">Include Symbols</label>
-		</div>
-	</div>
-
-    <button class="btn generate" id="generate">Generate Password</button>
-    <br></br><br></br>
-    <p align="center" style="color: white;">Developed with ❤️ by Timo Sarkar</p>
-</div>
-<script>
-    require('./renderer.js')
-  </script>
-<script>
-
-console.clear();
-
-const sliderProps = {
-	fill: "dodgerblue",
-	background: "rgba(255, 255, 255, 0.214)",
-};
-
-const slider = document.querySelector(".range__slider");
-
-const sliderValue = document.querySelector(".length__title");
-
-slider.querySelector("input").addEventListener("input", event => {
-	sliderValue.setAttribute("data-length", event.target.value);
-	applyFill(event.target);
-});
-applyFill(slider.querySelector("input"));
-function applyFill(slider) {
-	const percentage = (100 * (slider.value - slider.min)) / (slider.max - slider.min);
-	const bg = `linear-gradient(90deg, ${sliderProps.fill} ${percentage}%, ${sliderProps.background} ${percentage +
-			0.1}%)`;
-	slider.style.background = bg;
-	sliderValue.setAttribute("data-length", slider.value);
-}
-
-const randomFunc = {
-	lower: getRandomLower,
-	upper: getRandomUpper,
-	number: getRandomNumber,
-	symbol: getRandomSymbol,
-};
-
-function secureMathRandom() {
-	return window.crypto.getRandomValues(new Uint32Array(1))[0] / (Math.pow(2, 32) - 1);
-}
-
-// Generator Functions
-// All the functions that are responsible to return a random value taht we will use to create password.
-function getRandomLower() {
-	return String.fromCharCode(Math.floor(Math.random() * 26) + 97);
-}
-function getRandomUpper() {
-	return String.fromCharCode(Math.floor(Math.random() * 26) + 65);
-}
-function getRandomNumber() {
-	return String.fromCharCode(Math.floor(secureMathRandom() * 10) + 48);
-}
-function getRandomSymbol() {
-	const symbols = '~!@#$%^&*()_+{}":?><;.,';
-	return symbols[Math.floor(Math.random() * symbols.length)];
-}
-
-// Selecting all the DOM Elements that are necessary -->
-
-// The Viewbox where the result will be shown
-const resultEl = document.getElementById("result");
-// The input slider, will use to change the length of the password
-const lengthEl = document.getElementById("slider");
-
-// Checkboxes representing the options that is responsible to create differnt type of password based on user
-const uppercaseEl = document.getElementById("uppercase");
-const lowercaseEl = document.getElementById("lowercase");
-const numberEl = document.getElementById("number");
-const symbolEl = document.getElementById("symbol");
-
-// Button to generate the password
-const generateBtn = document.getElementById("generate");
-// Button to copy the text
-const copyBtn = document.getElementById("copy-btn");
-// Result viewbox container
-const resultContainer = document.querySelector(".result");
-// Text info showed after generate button is clicked
-const copyInfo = document.querySelector(".result__info.right");
-// Text appear after copy button is clicked
-const copiedInfo = document.querySelector(".result__info.left");
-
-// if this variable is trye only then the copyBtn will appear, i.e. when the user first click generate the copyBth will interact.
-let generatedPassword = false;
-
-// Update Css Props of the COPY button
-// Getting the bounds of the result viewbox container
-let resultContainerBound = {
-	left: resultContainer.getBoundingClientRect().left,
-	top: resultContainer.getBoundingClientRect().top,
-};
-// This will update the position of the copy button based on mouse Position
-resultContainer.addEventListener("mousemove", e => {
-	resultContainerBound = {
-		left: resultContainer.getBoundingClientRect().left,
-		top: resultContainer.getBoundingClientRect().top,
-	};
-	if(generatedPassword){
-		copyBtn.style.opacity = '1';
-		copyBtn.style.pointerEvents = 'all';
-		copyBtn.style.setProperty("--x", `${e.x - resultContainerBound.left}px`);
-		copyBtn.style.setProperty("--y", `${e.y - resultContainerBound.top}px`);
-	}else{
-		copyBtn.style.opacity = '0';
-		copyBtn.style.pointerEvents = 'none';
-	}
-});
-window.addEventListener("resize", e => {
-	resultContainerBound = {
-		left: resultContainer.getBoundingClientRect().left,
-		top: resultContainer.getBoundingClientRect().top,
-	};
-});
-
-// Copy Password in clipboard
-copyBtn.addEventListener("click", () => {
-	const textarea = document.createElement("textarea");
-	const password = resultEl.innerText;
-	if (!password || password == "CLICK GENERATE") {
-		return;
-	}
-	textarea.value = password;
-	document.body.appendChild(textarea);
-	textarea.select();
-	document.execCommand("copy");
-	textarea.remove();
-
-	copyInfo.style.transform = "translateY(200%)";
-	copyInfo.style.opacity = "0";
-	copiedInfo.style.transform = "translateY(0%)";
-	copiedInfo.style.opacity = "0.75";
-});
-
-// When Generate is clicked Password id generated.
-generateBtn.addEventListener("click", () => {
-	const length = +lengthEl.value;
-	const hasLower = lowercaseEl.checked;
-	const hasUpper = uppercaseEl.checked;
-	const hasNumber = numberEl.checked;
-	const hasSymbol = symbolEl.checked;
-	generatedPassword = true;
-	resultEl.innerText = generatePassword(length, hasLower, hasUpper, hasNumber, hasSymbol);
-	copyInfo.style.transform = "translateY(0%)";
-	copyInfo.style.opacity = "0.75";
-	copiedInfo.style.transform = "translateY(200%)";
-	copiedInfo.style.opacity = "0";
-});
-
-// Function responsible to generate password and then returning it.
-function generatePassword(length, lower, upper, number, symbol) {
-	let generatedPassword = "";
-	const typesCount = lower + upper + number + symbol;
-	const typesArr = [{ lower }, { upper }, { number }, { symbol }].filter(item => Object.values(item)[0]);
-	if (typesCount === 0) {
-		return "";
-	}
-	for (let i = 0; i < length; i++) {
-		typesArr.forEach(type => {
-			const funcName = Object.keys(type)[0];
-			generatedPassword += randomFunc[funcName]();
-		});
-	}
-	return generatedPassword.slice(0, length)
-									.split('').sort(() => Math.random() - 0.5)
-									.join('');
-}
-
-// function that handles the checkboxes state, so at least one needs to be selected. The last checkbox will be disabled.
-function disableOnlyCheckbox(){
-	let totalChecked = [uppercaseEl, lowercaseEl, numberEl, symbolEl].filter(el => el.checked)
-	totalChecked.forEach(el => {
-		if(totalChecked.length == 1){
-			el.disabled = true;
-		}else{
-			el.disabled = false;
-		}
-	})
-}
-
-[uppercaseEl, lowercaseEl, numberEl, symbolEl].forEach(el => {
-	el.addEventListener('click', () => {
-		disableOnlyCheckbox()
-	})
-})
-</script>
+    </body>
+</html>
